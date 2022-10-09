@@ -73,6 +73,8 @@ void make_nonblocking(int fd);
 
 int tcp_client(char *address, int port);
 
+char* myMemmem(char* a, int alen, char* b, int blen);
+
 #define    SERV_PORT      43211
 #define    MAXLINE        4096
 #define    UNIXSTR_PATH   "/var/lib/unixstream.sock"

@@ -70,6 +70,25 @@ int tcp_server_listen(int port) {
     return listenfd;
 }
 
+char* myMemmem(char* a, int alen, char* b, int blen)
+{
+    int i, j;
+    for(i=0;i<=alen-blen;++i)
+    {
+        for(j=0;j<blen;++j)
+        {
+            if(a[i+j]!= b[j])
+            {
+                break;
+            }
+        }
+        if(j>=blen)
+        {
+            return a+i;
+        }
+    }
+    return NULL;
+}
 
 int tcp_nonblocking_server_listen(int port) {
     int listenfd;

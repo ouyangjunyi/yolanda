@@ -13,7 +13,7 @@ int http_onConnectionCompleted(struct tcp_connection *tcpConnection) {
 int process_status_line(char *start, char *end, struct http_request *httpRequest) {
     int size = end - start;
     //method
-    char *space = memmem(start, end - start, " ", 1);
+    char *space = myMemmem(start, end - start, " ", 1);
     assert(space != NULL);
     int method_size = space - start;
     httpRequest->method = malloc(method_size + 1);
@@ -22,7 +22,7 @@ int process_status_line(char *start, char *end, struct http_request *httpRequest
 
     //url
     start = space + 1;
-    space = memmem(start, end - start, " ", 1);
+    space = myMemmem(start, end - start, " ", 1);
     assert(space != NULL);
     int url_size = space - start;
     httpRequest->url = malloc(url_size + 1);
@@ -59,7 +59,7 @@ int parse_http_request(struct buffer *input, struct http_request *httpRequest) {
                  */
                 char *start = input->data + input->readIndex;
                 int request_line_size = crlf - start;
-                char *colon = memmem(start, request_line_size, ": ", 2);
+                char *colon = myMemmem(start, request_line_size, ": ", 2);
                 if (colon != NULL) {
                     char *key = malloc(colon - start + 1);
                     strncpy(key, start, colon - start);

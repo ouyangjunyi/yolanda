@@ -8,7 +8,7 @@ char *data = "GET / HTTP/1.1\r\nHost: localhost:43211\r\nUser-Agent: curl/7.54.0
 //数据读到buffer之后的callback
 int onRequest(struct http_request *httpRequest, struct http_response *httpResponse) {
     char *url = httpRequest->url;
-    char *question = memmem(url, strlen(url), "?", 1);
+    char *question = myMemmem(url, strlen(url), "?", 1);
     char *path = NULL;
     if (question != NULL) {
         path = malloc(question - url);
