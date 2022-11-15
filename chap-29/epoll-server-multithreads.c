@@ -44,6 +44,7 @@ int onConnectionClosed(struct tcp_connection *tcpConnection) {
     return 0;
 }
 
+//https://time.geekbang.org/column/article/149204 
 int main(int c, char **v) {
     //主线程event_loop
     struct event_loop *eventLoop = event_loop_init();
